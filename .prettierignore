@@ -1,0 +1,13 @@
+.DS_Store
+.gitignore
+.editorconfig
+.env
+.env.*
+!.env.example
+yarn.lock
+next-end.d.ts
+
+# folders
+node_modules
+.husky
+.next
