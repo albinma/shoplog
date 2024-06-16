@@ -1,7 +1,8 @@
-import { darkTheme } from '@/app/ui/themes';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import type { Metadata } from 'next';
+import Header from '~/ui/components/Header';
+import { darkTheme } from '~/ui/themes';
 
 export const metadata: Metadata = {
   title: 'shoplog',
@@ -17,7 +18,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AppRouterCacheProvider>
-          <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
+          <ThemeProvider theme={darkTheme}>
+            <Header />
+            {children}
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
