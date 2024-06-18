@@ -1,17 +1,3 @@
-import { NextResponse } from 'next/server';
-import { auth } from '~/common/auth/auth';
+import { withMiddlewareAuthRequired } from '@auth0/nextjs-auth0/edge';
 
-export default auth((req) => {
-  if (!req.auth) {
-    return NextResponse.redirect(
-      new URL(
-        `/api/auth/signin?callbackUrl=${encodeURIComponent(req.url)}`,
-        req.nextUrl.origin,
-      ),
-    );
-  }
-});
-
-export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
-};
+export default withMiddlewareAuthRequired();

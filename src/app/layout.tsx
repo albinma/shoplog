@@ -1,3 +1,4 @@
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import type { Metadata } from 'next';
@@ -19,8 +20,10 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider>
           <ThemeProvider theme={darkTheme}>
-            <Header />
-            {children}
+            <UserProvider>
+              <Header />
+              {children}
+            </UserProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
