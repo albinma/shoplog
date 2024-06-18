@@ -20,6 +20,16 @@ You can start editing the page by modifying `src/app/page.tsx`. The page auto-up
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## User accounts
+
+Test user account:
+username: test@shoplog.com
+password: Test1234!
+
+Test admin user account
+username: admin@shoplog.com
+password: Test1234!
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

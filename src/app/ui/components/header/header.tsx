@@ -1,6 +1,10 @@
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
+import { auth } from '~/common/auth/auth';
+import { LoginButton, LogoutButton } from '~/ui/components';
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth();
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -9,6 +13,7 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Vehicle Maintenance Log
           </Typography>
+          <>{session ? <LogoutButton /> : <LoginButton />}</>
         </Toolbar>
       </AppBar>
       {/**

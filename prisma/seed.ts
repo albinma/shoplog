@@ -4,8 +4,10 @@ const prisma = new PrismaClient();
 
 async function main(): Promise<void> {
   const email = 'test@shoplog.com';
+  const provider = 'auth0';
+  const providerAccountId = 'auth0|6670f1c394d1babea1593c36';
   const adminEmail = 'admin@shoplog.com';
-  await prisma.user.upsert({
+  const user = await prisma.user.upsert({
     where: { email },
     update: {},
     create: {
@@ -16,17 +18,27 @@ async function main(): Promise<void> {
     },
   });
 
-  await prisma.user.upsert({
-    where: { email: adminEmail },
+  await prisma.account.upsert({
+    where: { provider_providerAccountId: { provider, providerAccountId } },
     update: {},
     create: {
-      name: 'Shoplog Admin',
-      email: adminEmail,
-      emailVerified: DateTime.utc().toJSDate(),
-      isTest: true,
-      isAdmin: true,
+      type: 'oidc',
+      provider,
+      providerAccountId,
+      userId: user.id,
     },
   });
+  // await prisma.user.upsert({
+  //   where: { email: adminEmail },
+  //   update: {},
+  //   create: {
+  //     name: 'Shoplog Admin',
+  //     email: adminEmail,
+  //     emailVerified: DateTime.utc().toJSDate(),
+  //     isTest: true,
+  //     isAdmin: true,
+  //   },
+  // });
 }
 
 main()

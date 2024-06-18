@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "env": "cp .env.example .env && npx auth secret",
     "build": "next build",
     "start": "next start",
     "format": "prettier --check --ignore-path .gitignore .",
@@ -12,6 +13,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "2.2.0",
     "@emotion/cache": "11.11.0",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.5",
@@ -21,6 +23,7 @@
     "@prisma/client": "5.15.0",
     "luxon": "3.4.4",
     "next": "14.2.4",
+    "next-auth": "5.0.0-beta.19",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
