@@ -29,6 +29,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
+    "@playwright/test": "1.44.1",
     "@types/luxon": "3.4.2",
     "@types/node": "20.14.5",
     "@types/react": "18.3.3",

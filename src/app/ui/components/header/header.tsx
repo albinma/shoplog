@@ -7,7 +7,12 @@ export default async function Header() {
       <CssBaseline />
       <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            data-testid="header-title"
+            sx={{ flexGrow: 1 }}
+          >
             Vehicle Maintenance Log
           </Typography>
           <AuthPanel />
