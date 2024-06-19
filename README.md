@@ -8,7 +8,13 @@ First, install dependencies:
 yarn
 ```
 
-Then, run the development server:
+Then, start docker dependencies
+
+```bash
+docker compose up -d
+```
+
+Finally, run the development server:
 
 ```bash
 yarn dev
