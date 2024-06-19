@@ -1,0 +1,18 @@
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "email" TEXT NOT NULL,
+    "email_verified" BOOLEAN NOT NULL,
+    "image" TEXT,
+    "is_test" BOOLEAN NOT NULL DEFAULT false,
+    "is_admin" BOOLEAN NOT NULL DEFAULT false,
+    "last_logged_in_at" TIMESTAMP(3),
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");

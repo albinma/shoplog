@@ -1,44 +1,33 @@
 import { PrismaClient } from '@prisma/client';
-import { DateTime } from 'luxon';
 const prisma = new PrismaClient();
 
 async function main(): Promise<void> {
   const email = 'test@shoplog.com';
-  const provider = 'auth0';
-  const providerAccountId = 'auth0|6670f1c394d1babea1593c36';
   const adminEmail = 'admin@shoplog.com';
-  const user = await prisma.user.upsert({
+  await prisma.user.upsert({
     where: { email },
     update: {},
     create: {
-      name: 'Shoplog Tester',
+      id: 'auth0|6670f1c394d1babea1593c36',
+      name: email,
       email,
-      emailVerified: DateTime.utc().toJSDate(),
+      emailVerified: true,
       isTest: true,
     },
   });
 
-  await prisma.account.upsert({
-    where: { provider_providerAccountId: { provider, providerAccountId } },
+  await prisma.user.upsert({
+    where: { email: adminEmail },
     update: {},
     create: {
-      type: 'oidc',
-      provider,
-      providerAccountId,
-      userId: user.id,
+      id: 'auth0|6670f1d85fde06d5ff225fc4',
+      name: adminEmail,
+      email: adminEmail,
+      emailVerified: true,
+      isTest: true,
+      isAdmin: true,
     },
   });
-  // await prisma.user.upsert({
-  //   where: { email: adminEmail },
-  //   update: {},
-  //   create: {
-  //     name: 'Shoplog Admin',
-  //     email: adminEmail,
-  //     emailVerified: DateTime.utc().toJSDate(),
-  //     isTest: true,
-  //     isAdmin: true,
-  //   },
-  // });
 }
 
 main()

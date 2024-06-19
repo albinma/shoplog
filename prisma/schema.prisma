@@ -14,55 +14,15 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  isTest        Boolean   @default(false) @map("is_test")
-  isAdmin       Boolean   @default(false) @map("is_admin")
-  accounts      Account[]
-  sessions      Session[]
+  id             String    @id
+  name           String?
+  email          String    @unique
+  emailVerified  Boolean   @map("email_verified")
+  image          String?
+  isTest         Boolean   @default(false) @map("is_test")
+  isAdmin        Boolean   @default(false) @map("is_admin")
+  lastLoggedInAt DateTime? @map("last_logged_in_at")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-}
-
-model Account {
-  provider          String
-  providerAccountId String  @map("provider_account_id")
-  userId            String
-  type              String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([provider, providerAccountId])
-}
-
-model Session {
-  sessionToken String   @unique
-  userId       String   @map("user_id")
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-}
-
-model VerificationToken {
-  identifier String
-  token      String
-  expires    DateTime
-
-  @@id([identifier, token])
 }
