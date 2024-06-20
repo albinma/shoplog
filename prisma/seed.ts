@@ -12,6 +12,8 @@ async function main(): Promise<void> {
       name: email,
       email,
       emailVerified: true,
+      image:
+        'https://s.gravatar.com/avatar/e52b32b72d2e01d4cc3f8f146948fdc4?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fte.png',
       isTest: true,
     },
   });
@@ -24,6 +26,8 @@ async function main(): Promise<void> {
       name: adminEmail,
       email: adminEmail,
       emailVerified: true,
+      image:
+        'https://s.gravatar.com/avatar/bbca517dd7dcb785fb0b29392d783605?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fad.png',
       isTest: true,
       isAdmin: true,
     },

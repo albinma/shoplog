@@ -10,7 +10,7 @@ export const GET = handleAuth({
       session: Session,
       state?: { [key: string]: any },
     ) => {
-      const { name, email, email_verified, sub } = session.user;
+      const { name, email, email_verified, sub, picture } = session.user;
 
       await prisma.user.upsert({
         where: { id: sub },
@@ -18,6 +18,7 @@ export const GET = handleAuth({
           name,
           email,
           emailVerified: email_verified,
+          image: picture,
           lastLoggedInAt: DateTime.utc().toJSDate(),
         },
         create: {
@@ -25,6 +26,7 @@ export const GET = handleAuth({
           name,
           email,
           emailVerified: email_verified,
+          image: picture,
           lastLoggedInAt: DateTime.utc().toJSDate(),
         },
       });
