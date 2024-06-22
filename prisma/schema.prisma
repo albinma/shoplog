@@ -15,6 +15,7 @@ datasource db {
 
 model User {
   id             String    @id
+  refId          String    @unique @default(cuid()) @map("ref_id")
   name           String?
   email          String    @unique
   emailVerified  Boolean   @map("email_verified")
@@ -23,6 +24,31 @@ model User {
   isAdmin        Boolean   @default(false) @map("is_admin")
   lastLoggedInAt DateTime? @map("last_logged_in_at")
 
+  vehicles Vehicle[]
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Vehicle {
+  id       String  @id @default(cuid())
+  refId    String  @unique @default(cuid()) @map("ref_id")
+  userId   String
+  vin      String
+  year     Int
+  make     String
+  model    String
+  trim     String?
+  style    String?
+  odometer Int?
+
+  user User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([userId, vin])
+  @@map("vehicles")
 }
