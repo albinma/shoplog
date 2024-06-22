@@ -1,7 +1,10 @@
+import { getSession } from '@auth0/nextjs-auth0';
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
-import AuthPanel from '~/ui/components/auth-panel/auth-panel';
+import { UserMenu } from '~/ui/components';
 
 export default async function Header() {
+  const session = await getSession();
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -15,7 +18,13 @@ export default async function Header() {
           >
             Vehicle Maintenance Log
           </Typography>
-          <AuthPanel />
+
+          {session && (
+            <UserMenu
+              name={session.user.name}
+              imageSrc={session.user.picture}
+            />
+          )}
         </Toolbar>
       </AppBar>
       {/**
