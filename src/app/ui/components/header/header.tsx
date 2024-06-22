@@ -1,6 +1,6 @@
 import { getSession } from '@auth0/nextjs-auth0';
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
-import { UserMenu } from '~/ui/components';
+import { UserMenu, VehicleSelect } from '~/ui/components';
 
 export default async function Header() {
   const session = await getSession();
@@ -18,6 +18,8 @@ export default async function Header() {
           >
             Vehicle Maintenance Log
           </Typography>
+
+          {session && <VehicleSelect userId={session.user.sub} />}
 
           {session && (
             <UserMenu
